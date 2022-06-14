@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class='dashboard'>
+        <h1>{{user.first_name}}</h1>
+        <a href='{{ url_for('update_account', id=user.id)}}'>Update Account</a>
+        <a href='{{ url_for('cash', id=user.id)}}'>Deposit Money</a>
+    </div>
+{% endblock content %}

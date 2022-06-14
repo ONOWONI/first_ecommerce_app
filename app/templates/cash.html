@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="regform">
+        <form method='POST' action=''>
+            {{form.hidden_tag()}}
+            <fieldset class='single-form'>
+                <div>
+                    {{form.cash.label(class="form-control-label") }}
+                    {% if form.cash.errors%}
+                        {{ form.cash(class="form-group form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {%for error in form.cash.errors%}
+                                <span>{{error}}</span>
+                            {%endfor%}
+                        </div>
+                    {%else%}
+                        {{ form.cash(class="form-control form-control-lg") }}
+                    {% endif%}
+                </div>
+                <div>
+                    {{form.submit}}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}

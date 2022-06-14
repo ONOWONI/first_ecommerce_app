@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class='card-row'>
+        {% for good in goods %}
+            {% if good.quantity > 0 %}
+            <a href='{{url_for('single_product', product_id=good.id)}}'>
+                <div class='card-col'>
+                    <img src="{{ url_for('static', filename='profile_pic/' + good.product_pic ) }}">
+                    {{good.name}}
+                    {{good.price}}
+                </div>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}
+

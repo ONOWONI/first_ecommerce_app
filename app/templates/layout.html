@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href="{{url_for('static', filename='css/bootstrap.css')}}">
+        <link rel='stylesheet' href="{{url_for('static', filename='main.css')}}">
+        {% if title %}
+            <title>{{title}}</title>
+        {% else %}
+            <title> Ecommerce </title>
+        {% endif %}
+    </head>
+    <body>
+        {%  with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <span>{{message}}</span>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if current_user.is_authenticated %}
+            <nav>
+                <span><a href='{{url_for("home")}}'>Home</a></span>
+                <span><a href='{{url_for("categories")}}'>Categories</a></span>
+                <span><a href='{{url_for("cart")}}'>Cart</a></span>
+                <span><a href='{{url_for("user", id=current_user.id)}}'>Account</a></span>
+                <span><a href='{{url_for("logout")}}'>Log out</a></span>
+            </nav>
+        {% else %}
+            <nav>
+                <span><a href='{{url_for("home")}}'>Home</a></span>
+                <span><a href='{{url_for("categories")}}'>Categories</a></span>
+                <span><a href='{{url_for("reg")}}'>Register</a></span>
+                <span><a href='{{url_for("login")}}'>Login</a></span>
+            </nav>
+        {% endif %}
+
+
+        {% block content %}{% endblock content %}
+    </body>
+</html>

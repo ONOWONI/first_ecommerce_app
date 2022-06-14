@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <form method='POST' enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        <fieldset class='single-product'>
+            <img class='product-img' src='{{ pic }}'>
+            <div>{{post.name}}</div>
+            <div>$ {{post.price}}</div>
+            <div>{{post.description}}</div>
+            {% if post.quantity == 1 %}
+                <div>{{post.quantity}} piece available</div>
+            {% else %}
+                <div>{{post.quantity}} pieces available</div>
+            {% endif %}
+            <div class='quantity'>
+                {% if form.quantity.errors%}
+                    {{ form.quantity(class="form-group form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {%for error in form.quantity.errors%}
+                            <span>{{error}}</span>
+                        {%endfor%}
+                    </div>
+                {%else%}
+                    {{ form.quantity(class="form-control form-control-lg") }}
+                {% endif%}
+            </div>
+            <div>
+                {{ form.submit}}
+            </div>
+        </fieldset>
+    </form>
+{% endblock content %}

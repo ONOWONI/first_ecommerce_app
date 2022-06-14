@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class='card-row'>
+        {% for i in r %}
+            <div class='card-col'>
+                <div class='cart'>
+                    <img src="{{ url_for('static', filename='profile_pic/' + i[3] ) }}">
+                    {{i[1]}}
+                    {{i[2]}}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
